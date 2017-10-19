@@ -1,0 +1,80 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  vars:
+      homebrew_taps: 
+        - homebrew/binary
+        - homebrew/dupes
+      homebrew_packages: 
+        - { name: ag }
+        - { name: autoconf }
+        - { name: awscli }
+        - { name: colordiff }
+        - { name: direnv }
+        - { name: ghq }
+        - { name: go }
+        - { name: goenv }
+        - { name: htop }
+        - { name: jq }
+        - { name: lua }
+        - { name: mosquitto }
+        - { name: nkf }
+        - { name: nmap }
+        - { name: npm }
+        - { name: nodenv }
+        - { name: oniguruma }
+        - { name: openssl, state: linked, install_options: force }
+        - { name: ossp-uuid }
+        - { name: peco }
+        - { name: plenv }
+        - { name: perl-build }
+        - { name: pkg-config }
+        - { name: plenv }
+        - { name: pwgen }
+        - { name: pyenv }
+        - { name: pyenv-virtualenv }
+        - { name: python }
+        - { name: rbenv }
+        - { name: readline }
+        - { name: reattach-to-user-namespace }
+        - { name: rmtrash }
+        - { name: rbenv }
+        - { name: ruby-build }
+        - { name: sqlite }
+        - { name: terraform }
+        - { name: tmux }
+        - { name: tree }
+        - { name: vim }
+        - { name: watch }
+        - { name: wget }
+        - { name: zsh }
+  tasks:
+      - name: "add repository"
+        homebrew_tap:
+            name: "{{ item }}"
+            state: present
+        with_items: "{{ homebrew_taps }}"
+
+      - name: update homebrew
+        homebrew:
+            update_homebrew: yes
+
+      - name: "install package"
+        homebrew:
+            name: "{{ item.name}}"
+            state: "{{ item.state | default('latest') }}"
+            install_options: "{{ item.install_options | default(omit) }}"
+        with_items: "{{ homebrew_packages }}"
+        register: brew_result
+
+      - debug: var=result
+
+      - name: "make brew info dir"
+        file:
+            path: brew_info
+            state: directory
+
+      - name: "save brew info"
+        shell: "brew info {{ item }} >> brew_info/{{ item }}"
+        with_items: "brew_result.results | map(attribute='item') | map(attribute='name') | list"
