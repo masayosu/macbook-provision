@@ -10,14 +10,20 @@
         - { name: ag }
         - { name: autoconf }
         - { name: awscli }
+        - { name: cocot}
         - { name: colordiff }
         - { name: direnv }
         - { name: ghq }
+        - { name: git-secrets }
         - { name: go }
         - { name: goenv }
         - { name: htop }
         - { name: jq }
+        - { name: libevent }
+        - { name: libwebsockets}
+        - { name: libyaml}
         - { name: lua }
+        - { name: luajit }
         - { name: mosquitto }
         - { name: nkf }
         - { name: nmap }
@@ -30,7 +36,8 @@
         - { name: plenv }
         - { name: perl-build }
         - { name: pkg-config }
-        - { name: plenv }
+        - { name: postgresql93 }
+        - { name: pv }
         - { name: pwgen }
         - { name: pyenv }
         - { name: pyenv-virtualenv }
@@ -42,13 +49,27 @@
         - { name: rbenv }
         - { name: ruby-build }
         - { name: sqlite }
+        - { name: telnet}
         - { name: terraform }
         - { name: tmux }
+        - { name: tmux-xpanes }
         - { name: tree }
         - { name: vim }
         - { name: watch }
         - { name: wget }
         - { name: zsh }
+
+      homebrew_cask_packages:
+        - name: docker-toolbox
+        - name: vagrant
+        - name: google-chrome
+        - name: karabiner-elements
+        - name: iterm2
+        - name: lastpass
+        - name: slack
+        - name: marp
+        - name: firefox
+
   tasks:
       - name: "add repository"
         homebrew_tap:
@@ -60,13 +81,21 @@
         homebrew:
             update_homebrew: yes
 
-      - name: "install package"
-        homebrew:
+            #      - name: "install package"
+            #        homebrew:
+            #            name: "{{ item.name}}"
+            #            state: "{{ item.state | default('latest') }}"
+            #            install_options: "{{ item.install_options | default(omit) }}"
+            #        with_items: "{{ homebrew_packages }}"
+            #        register: brew_result
+            #
+            #      - debug: var=result
+
+      - name: "install cask package"
+        homebrew_cask:
             name: "{{ item.name}}"
-            state: "{{ item.state | default('latest') }}"
-            install_options: "{{ item.install_options | default(omit) }}"
-        with_items: "{{ homebrew_packages }}"
-        register: brew_result
+            state: "{{ item.state | default('present') }}"
+        with_items: "{{ homebrew_cask_packages }}"
 
       - debug: var=result
 
