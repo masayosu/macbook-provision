@@ -81,15 +81,15 @@
         homebrew:
             update_homebrew: yes
 
-            #      - name: "install package"
-            #        homebrew:
-            #            name: "{{ item.name}}"
-            #            state: "{{ item.state | default('latest') }}"
-            #            install_options: "{{ item.install_options | default(omit) }}"
-            #        with_items: "{{ homebrew_packages }}"
-            #        register: brew_result
-            #
-            #      - debug: var=result
+      - name: "install package"
+        homebrew:
+            name: "{{ item.name}}"
+            state: "{{ item.state | default('latest') }}"
+            install_options: "{{ item.install_options | default(omit) }}"
+        with_items: "{{ homebrew_packages }}"
+        register: brew_result
+      
+      - debug: var=result
 
       - name: "install cask package"
         homebrew_cask:
