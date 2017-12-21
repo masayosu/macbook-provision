@@ -36,12 +36,12 @@
         - { name: plenv }
         - { name: perl-build }
         - { name: pkg-config }
-        - { name: postgresql93 }
         - { name: pv }
         - { name: pwgen }
         - { name: pyenv }
         - { name: pyenv-virtualenv }
         - { name: python }
+        - { name: fabric }
         - { name: rbenv }
         - { name: readline }
         - { name: reattach-to-user-namespace }
@@ -52,7 +52,6 @@
         - { name: telnet}
         - { name: terraform }
         - { name: tmux }
-        - { name: tmux-xpanes }
         - { name: tree }
         - { name: vim }
         - { name: watch }
@@ -65,10 +64,12 @@
         - name: google-chrome
         - name: karabiner-elements
         - name: iterm2
-        - name: lastpass
         - name: slack
         - name: marp
         - name: firefox
+        - name: scroll-reverser
+        - name: skitch
+        - name: lastpass
 
   tasks:
       - name: "add repository"
