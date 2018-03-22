@@ -39,9 +39,6 @@
         - { name: pv }
         - { name: pwgen }
         - { name: pyenv }
-        - { name: pyenv-virtualenv }
-        - { name: python }
-        - { name: fabric }
         - { name: rbenv }
         - { name: readline }
         - { name: reattach-to-user-namespace }
