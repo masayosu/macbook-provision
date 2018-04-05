@@ -10,10 +10,13 @@
         - { name: ag }
         - { name: autoconf }
         - { name: awscli }
+        - { name: bash-completion }
         - { name: cocot}
         - { name: colordiff }
         - { name: direnv }
         - { name: ghq }
+        - { name: git }
+        - { name: git-now }
         - { name: git-secrets }
         - { name: go }
         - { name: goenv }
