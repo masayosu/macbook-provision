@@ -10,9 +10,13 @@
         - { name: ag }
         - { name: autoconf }
         - { name: awscli }
+        - { name: awslogs }
+        - { name: bash }
         - { name: bash-completion }
-        - { name: cocot}
+        - { name: cert }
+        - { name: cocot }
         - { name: colordiff }
+        - { name: coreutils }
         - { name: direnv }
         - { name: ghq }
         - { name: git }
@@ -21,6 +25,8 @@
         - { name: go }
         - { name: goenv }
         - { name: htop }
+        - { name: httpstat }
+        - { name: iproute2mac }
         - { name: jq }
         - { name: libevent }
         - { name: libwebsockets}
@@ -28,16 +34,21 @@
         - { name: lua }
         - { name: luajit }
         - { name: mosquitto }
+        - { name: mysql}
         - { name: nkf }
         - { name: nmap }
+        - { name: node }
+        - { name: node-build }
         - { name: npm }
         - { name: nodenv }
         - { name: oniguruma }
         - { name: openssl, state: linked, install_options: force }
         - { name: ossp-uuid }
+        - { name: pcre }
         - { name: peco }
-        - { name: plenv }
+        - { name: perl }
         - { name: perl-build }
+        - { name: plenv }
         - { name: pkg-config }
         - { name: pv }
         - { name: pwgen }
@@ -51,14 +62,20 @@
         - { name: sqlite }
         - { name: telnet}
         - { name: terraform }
+        - { name: tfenv }
+        - { name: the_silver_searcher}
         - { name: tmux }
         - { name: tree }
+        - { name: coreutils }
+        - { name: vegeta }
         - { name: vim }
         - { name: watch }
         - { name: wget }
+        - { name: yarn}
         - { name: zsh }
 
       homebrew_cask_packages:
+        - name: clipy 
         - name: docker-toolbox
         - name: vagrant
         - name: google-chrome
